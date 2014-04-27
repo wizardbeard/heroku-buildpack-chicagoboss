@@ -7,7 +7,7 @@ To select the Chicago Boss version you want to deploy, select the correct revisi
 ```erlang
 
 {deps, [
-  {boss, ".*", {git, "git://github.com/cstar/ChicagoBoss.git", "master"}}
+  {boss, ".*", {git, "git://github.com/ChicagoBoss/ChicagoBoss.git", "master"}}
 ]}.
 
 ```
@@ -17,11 +17,11 @@ The buildpack will automatically provision a dev database and configure your app
 
 ### Configure your app
 
-    $ heroku config:add BUILDPACK_URL="https://github.com/cstar/heroku-buildpack-chicagoboss.git" -a YOUR_APP
+    $ heroku config:add BUILDPACK_URL="https://github.com/mithereal/heroku-buildpack-chicagoboss.git" -a YOUR_APP
 
 or
     
-    $ heroku create --buildpack "https://github.com/cstar/heroku-buildpack-chicagoboss.git"
+    $ heroku create --buildpack "https://github.com/mithereal/heroku-buildpack-chicagoboss.git"
 
 ### Connecting to your postgresql database
 
@@ -33,14 +33,17 @@ The Erlang/OTP release version that will be used to build and run your applicati
 
 Currently supported OTP versions:
 
-* OTP_R16B01 (the default)
+* OTP_R16B03-1 (the default)
 * OTP_R15B03-1
 * OTP_R15B
 * OTP_R15B01
 * OTP_R15B02
 
 To select the version for your app:
+get the version of OTP you developed with:
 
+    $ erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell
+    $ "OTP_R15B01"
     $ echo OTP_R15B01 > .preferred_otp_version
     $ git commit "Select R15B01 as preferred OTP version" .preferred_otp_version
 
